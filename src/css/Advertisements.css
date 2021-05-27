@@ -1,0 +1,30 @@
+.advertisements {
+    text-align: center;
+    position: relative;
+    height: 5vh;
+    padding: 15px;
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    width: 100%;
+}
+
+.advertisement-card {
+    text-align: center;
+    position: relative;
+    height: 5vh;
+    padding: 15px;
+    display: grid;
+    grid-template-rows: repeat(3,1fr);
+    width: 100%;
+}
+
+.advertisements button {
+    display: block;
+    margin: 0 auto;
+}
+
+.adver-row {
+    display: grid;
+    grid-column: auto;
+    grid-row: auto;
+}

@@ -1,0 +1,25 @@
+.User_Profile {
+    text-align: center;
+    position: relative;
+    height: 5vh;
+    padding: 15px;
+    display: grid;
+    grid-template-rows: 100%;
+    width: 100%;
+}
+
+.user-row {
+    display: block;
+    grid-column: auto;
+    grid-row: auto;
+}
+
+.user-row p {
+    display: inline-block;
+    margin: 15px;
+}
+
+.user-row button {
+    display: block;
+    margin: 0 auto;
+}

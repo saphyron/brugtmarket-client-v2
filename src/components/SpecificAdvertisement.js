@@ -1,6 +1,5 @@
 import React from "react";
 import Header from './Header';
-import logo from '../logo.jpg';
 import User from './User';
 
 class SpecificAdvertisement extends React.Component {
@@ -21,6 +20,13 @@ class SpecificAdvertisement extends React.Component {
         })
     }
 
+    dateConverter(timestamp) {
+        let dateTime = new Date(timestamp);
+        let result = dateTime.getFullYear() + "-" +
+                    dateTime.getMonth() + "-" + dateTime.getDay();
+        return result;
+    }
+
     componentDidMount() {
         fetch("http://localhost:8087/users")
             .then(userres => userres.json())
@@ -37,7 +43,13 @@ class SpecificAdvertisement extends React.Component {
                         }
                     }
                 }
-                console.log(advertisement, user)
+                for (let textlength in advertisement) {
+                    if (advertisement.text.length > 60) {
+                        advertisement.shorterText = advertisement.text.substring(0, 60);
+                    } else {
+                        advertisement.shorterText = advertisement.text;
+                    }
+                }
                 this.setState({
                     isLoaded: true,
                     advertisementResult: user.advertisements,
@@ -58,26 +70,26 @@ class SpecificAdvertisement extends React.Component {
             return (<User userThatIsSelected={selectedUser} />)
         } else {
             return (
-                <article id="page">
-                    <header id="Header">
+                <article className="page">
                         <Header />
-                    </header>
 
-                    <div id="logo">
-                        <img src={logo} alt="logo" id="logo"></img>
+                    <div className="logo">
+                        <img src="/download.jpeg" alt="logo" id="mc"></img>
                     </div>
-                        <div id="User Profile">
-                            <div>{userResultSet.companyName}</div>
-                            <div>{userResultSet.firstName} {userResultSet.lastName}</div>
-                            <div><p bold="true">Email: </p>{userResultSet.email}</div>
-                            <div><p bold="true">Phone: </p>{userResultSet.phoneCode} {userResultSet.phoneNumber}</div>
-                            <button data-id={userResultSet} onClick={this.handleClick}>View User</button>
+                        <div className="User_Profile">
+                            <div className="user-row">{userResultSet.companyName}</div>
+                            <div className="user-row">{userResultSet.firstName} {userResultSet.lastName}</div>
+                            <div className="user-row"><p bold="true">Email: </p><p>{userResultSet.email}</p></div>
+                            <div className="user-row"><p bold="true">Phone: </p><p>{userResultSet.phoneCode} {userResultSet.phoneNumber}</p></div>
+                            <button className="user-row" data-id={userResultSet} onClick={this.handleClick}>View User</button>
                         </div>
                     {advertisementResult.map((item =>
-                        <div id="Advertisement">
-                            <h1 key={item.headline} value={item.headline}>value={item.headline}</h1>
-                            <div key={item.text} value={item.text}>{item.text}</div>
-                            <div key={item.price} value={item.price}><h4 bold="true">Price:</h4> {item.price} ,-</div>
+                        <div className="Advertisement">
+                            <h1>{item.type}</h1>
+                            <p>{this.dateConverter(item.creation)}</p>
+                            <h1>{item.headline}</h1>
+                            <div className="text">{item.shorterText}</div>
+                            <div><h4 bold="true">Price:</h4> {item.price} ,-</div>
                         </div>
                     ))}
                 </article>

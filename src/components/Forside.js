@@ -1,7 +1,7 @@
 import React from "react";
 import Header from './Header';
-import logo from '../logo.jpg';
 import '../css/Forside.css'
+import Advertisements from './Advertisements';
 
 class Forside extends React.Component {
     constructor(props) {
@@ -9,54 +9,62 @@ class Forside extends React.Component {
         this.state = {
             isLoaded: false,
             error: null,
-            categories: []
+            categories: [],
+            selectedCategory: null
         }
     }
 
     componentDidMount() {
         fetch("http://localhost:8087/categories/count")
-        .then(res => res.json())
-        .then((result) => {
-            console.log(result)
-            this.setState({
-                isLoaded: true,
-                categories: result
-            });
-        }).catch(error => {
-            this.setState({
-                isLoaded: true,
-                error: error
+            .then(res => res.json())
+            .then((result) => {
+                this.setState({
+                    isLoaded: true,
+                    categories: result
+                });
+            }).catch(error => {
+                this.setState({
+                    isLoaded: true,
+                    error: error
+                })
             })
-        })
+    }
+
+    handleClick = (e) => {
+        let target = e.target;
+        let selectedCategoryIndex = target.parentElement.getAttribute("data-id");
+        this.setState({
+            selectedCategory: selectedCategoryIndex
+        });
     }
 
     render() {
-        const {isLoaded, error, categories} = this.state;
+        const { isLoaded, error, categories, selectedCategory } = this.state;
 
         if (error) {
             return <div>Error: {error.message}</div>;
         } else if (!isLoaded) {
             return <div>Loading...</div>;
-        } else { return (
-            <article id="page">
-                <header id="Header">
+        } else if (selectedCategory !== null) {
+            return (<Advertisements advertisementCategory={selectedCategory} />)
+        } else {
+            return (
+                <article id="page">
                     <Header />
-                </header>
-                {categories.map((item => 
-                    <div id="Categories">
-                        <div>
-                            <p key={item.category} value={item.category}>
-                                {item.category}
-                                <p key={item.count} value={item.count}>
-                                    {item.count}
-                                </p>
-                            </p>
+                    {categories.map((item =>
+                        <div className="Categories">
+                            <div className="forside-row" data-id={item.category}>
+                                
+                                <p>{item.category}</p>
+                                <p>{item.count}</p>
+                                <button onClick={this.handleClick}>View Category</button>
+                            </div>
                         </div>
-                    </div>
-                ))}
-                
-            </article>
-        )}
+                    ))}
+
+                </article>
+            )
+        }
     }
 
 }

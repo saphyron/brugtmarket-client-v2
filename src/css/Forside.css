@@ -1,0 +1,25 @@
+.Categories {
+    text-align: center;
+    position: relative;
+    height: 5vh;
+    padding: 15px;
+    display: grid;
+    grid-template-rows: repeat(1fr);
+    width: 100%;
+}
+
+.forside-row {
+    display: block;
+    grid-column: auto;
+    grid-row: auto;
+}
+
+.forside-row p {
+    display: inline-block;
+    margin: 15px;
+}
+
+.Categories button {
+    display: block;
+    margin: 0 auto;
+}

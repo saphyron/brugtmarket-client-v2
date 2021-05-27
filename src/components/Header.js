@@ -1,7 +1,6 @@
 import React from "react";
-import logo from '../logo.jpg';
 import Advertisements from './Advertisements';
-import '../css/Header.css'
+import '../css/Header.css';
 
 class Header extends React.Component {
     constructor(props) {
@@ -17,14 +16,12 @@ class Header extends React.Component {
 
 
     handleClick = (e) => {
-        window.location.href="/";
+        window.location.href = "/";
     }
 
     selectCategory = (e) => {
         let target = e.target;
-        console.log(e.target);
         let selectedCategoryIndex = target.value;
-        console.log(selectedCategoryIndex)
         this.setState({
             selectedCategory: selectedCategoryIndex
         });
@@ -58,29 +55,40 @@ class Header extends React.Component {
             if (selectedCategory !== null) {
                 return (<Advertisements advertisementCategory={selectedCategory} />);
             } else {
-            return (
-                <header id="Header">
-                    <img src={logo} alt="Logo"  onClick={this.handleClick} />
-                    <select name="Categories" onChange={this.selectCategory}>
-                        <option value="Empty">
-                            
-                        </option>
-                        {categories.map((item =>
-                        <option key={item.category} value={item.category} >{item.category}</option>
-                    ))}
-                    </select>
-                <button>
-                    Create Add
-                </button>
-                <button>
-                    Login
-                </button>
-                <button>
-                    Signup
-                </button>
-                </header>
-            )
-        }}
+                return (
+                    <header id="Header">
+                        <div className="Header-col">
+                            <img id="logo" src="/logo.jpg" alt="Logo" onClick={this.handleClick} />
+                        </div>
+                        <div className="Header-col">
+                            <select id="dropdown" name="Categories" onChange={this.selectCategory}>
+                                <option value="Empty">
+
+                                </option>
+                                {categories.map((item =>
+                                    <option >{item.category}</option>
+                                ))}
+                            </select>
+                        </div>
+                        <div className="Header-col">
+                            <button>
+                                Create Add
+                            </button>
+                        </div>
+                        <div className="Header-col">
+                            <button>
+                                Login
+                            </button>
+                        </div>
+                        <div className="Header-col">
+                            <button>
+                                Signup
+                            </button>
+                        </div>
+                    </header>
+                )
+            }
+        }
     }
 }
 
