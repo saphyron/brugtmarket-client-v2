@@ -1,5 +1,6 @@
 import React from "react";
 import Header from './Header';
+import '../css/User.css';
 
 class User extends React.Component {
     constructor(props) {
@@ -30,22 +31,22 @@ class User extends React.Component {
             return (
                 <article id="page">
                         <Header />
-                    <div id="logo">
-                        <img src="/download.jpeg" alt="logo" id="logo"></img>
+                    <div id="user-logo">
+                        <img src="/userlogo.jpg" alt="logo" id="user-logo"></img>
                     </div>
-                    <div id="User Profile">
-                        <div>{this.props.userThatIsSelected.companyName}</div>
-                        <div>{this.props.userThatIsSelected.firstName} {this.props.userThatIsSelected.lastName}</div>
-                        <div><p bold="true">Email: </p>{this.props.userThatIsSelected.email}</div>
-                        <div><p bold="true">Phone: </p>{this.props.userThatIsSelected.phoneCode} {this.props.userThatIsSelected.phoneNumber}</div>
-                        <div><p bold="true">Member since: </p>{this.dateConverter(this.props.userThatIsSelected.creation)}</div>
+                    <div id="User_Profile">
+                        <div className="user-row">{this.props.userThatIsSelected.companyName}</div>
+                        <div className="user-row">{this.props.userThatIsSelected.firstName} {this.props.userThatIsSelected.lastName}</div>
+                        <div className="user-row"><p bold="true">Email: </p>{this.props.userThatIsSelected.email}</div>
+                        <div className="user-row"><p bold="true">Phone: </p>{this.props.userThatIsSelected.phoneCode} {this.props.userThatIsSelected.phoneNumber}</div>
+                        <div className="user-row"><p bold="true">Member since: </p>{this.dateConverter(this.props.userThatIsSelected.creation)}</div>
                     </div>
                     {this.props.userThatIsSelected.advertisements.map((item =>
                         <div id="advertisements">
-                            <img src="/download.jpg" alt="logo" id="mc"></img>
-                            <h1>{item.headline}</h1>
-                            <div className="text">{item.text}</div>
-                            <div><h4 bold="true">Price:</h4> {item.price} ,-</div>
+                            <img src="/download.jpeg" alt="logo" id="mc"></img>
+                            <h1 className="adver-row">{item.headline}</h1>
+                            <div className="adver-row">{item.text}</div>
+                            <div className="adver-row"><h4 bold="true">Price:</h4> {item.price} ,-</div>
                         </div>
                     ))}
                 </article>

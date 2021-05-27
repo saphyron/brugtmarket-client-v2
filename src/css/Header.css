@@ -36,6 +36,14 @@
     left: 5px;
   }
 
+  #user-logo {
+    position: absolute;
+    display: inline-block;
+    left: 5px;
+    max-height: 240px;
+    min-width: 240px;
+  }
+
   .textline {
     position: relative;
 

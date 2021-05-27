@@ -1,0 +1,28 @@
+.User_Profile {
+    display: inline-block;
+    min-height: fit-content;
+}
+
+.user-row p {
+    display: inline-block;
+    min-height: fit-content;
+    margin: 15px;
+}
+
+.user-row button {
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.advertisements {
+    display: grid;
+    grid-template-rows: auto;
+    min-height: fit-content;
+    
+}
+
+.adver-row {
+    display: grid;
+    padding: 7px;
+
+}

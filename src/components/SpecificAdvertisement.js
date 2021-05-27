@@ -1,6 +1,7 @@
 import React from "react";
 import Header from './Header';
 import User from './User';
+import '../css/SpecificAdvertisement.css';
 
 class SpecificAdvertisement extends React.Component {
     constructor(props) {
@@ -23,7 +24,7 @@ class SpecificAdvertisement extends React.Component {
     dateConverter(timestamp) {
         let dateTime = new Date(timestamp);
         let result = dateTime.getFullYear() + "-" +
-                    dateTime.getMonth() + "-" + dateTime.getDay();
+            dateTime.getMonth() + "-" + dateTime.getDay();
         return result;
     }
 
@@ -71,11 +72,8 @@ class SpecificAdvertisement extends React.Component {
         } else {
             return (
                 <article className="page">
-                        <Header />
-
-                    <div className="logo">
-                        <img src="/download.jpeg" alt="logo" id="mc"></img>
-                    </div>
+                    <Header />
+                    <div className="bodypage">
                         <div className="User_Profile">
                             <div className="user-row">{userResultSet.companyName}</div>
                             <div className="user-row">{userResultSet.firstName} {userResultSet.lastName}</div>
@@ -83,15 +81,19 @@ class SpecificAdvertisement extends React.Component {
                             <div className="user-row"><p bold="true">Phone: </p><p>{userResultSet.phoneCode} {userResultSet.phoneNumber}</p></div>
                             <button className="user-row" data-id={userResultSet} onClick={this.handleClick}>View User</button>
                         </div>
-                    {advertisementResult.map((item =>
-                        <div className="Advertisement">
-                            <h1>{item.type}</h1>
-                            <p>{this.dateConverter(item.creation)}</p>
-                            <h1>{item.headline}</h1>
-                            <div className="text">{item.shorterText}</div>
-                            <div><h4 bold="true">Price:</h4> {item.price} ,-</div>
-                        </div>
-                    ))}
+                        {advertisementResult.map((item =>
+                            <div className="Advertisement">
+                                <div className="logo">
+                                    <img src="/download.jpeg" alt="logo" id="mc"></img>
+                                </div>
+                                <h1 className="adver-row">{item.type}</h1>
+                                <p className="adver-row">{this.dateConverter(item.creation)}</p>
+                                <h1 className="adver-row">{item.headline}</h1>
+                                <div className="text">{item.shorterText}</div>
+                                <div className="adver-row"><h4 bold="true">Price:</h4> {item.price} ,-</div>
+                            </div>
+                        ))}
+                    </div>
                 </article>
             );
         }

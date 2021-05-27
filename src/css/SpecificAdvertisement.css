@@ -1,25 +1,36 @@
-.User_Profile {
+.bodypage {
     text-align: center;
     position: relative;
     height: 5vh;
     padding: 15px;
-    display: grid;
-    grid-template-rows: 100%;
+    gap: 0px 0px;
     width: 100%;
 }
 
-.user-row {
-    display: block;
-    grid-column: auto;
-    grid-row: auto;
+.Advertisement {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    grid-template-rows: auto;
+    min-height: fit-content;
+}
+
+.User_Profile {
+    display: inline-block;
+    min-height: fit-content;
 }
 
 .user-row p {
     display: inline-block;
+    min-height: fit-content;
     margin: 15px;
 }
 
 .user-row button {
-    display: block;
+    display: inline-block;
+    margin: 0 auto;
+}
+
+.adver-row {
+    display: grid;
     margin: 0 auto;
 }
