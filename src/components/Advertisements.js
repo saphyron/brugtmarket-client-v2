@@ -46,6 +46,10 @@ class Advertisements extends React.Component {
         });
     }
 
+    changedCategory = (category) => {
+        this.setState({selectedCategory: category})
+    }
+
     render() {
         const { isLoaded, error, allAdvertisements, advertisementsResults, selectedAdvertisement } = this.state;
 
@@ -58,7 +62,7 @@ class Advertisements extends React.Component {
         } else {
             return (
                 <article id="page">
-                    <Header />
+                    <Header onChange = {this.changedCategory} />
                     <div className="advertisements">
                         <h1>{this.props.advertisementCategory}</h1>
                         {advertisementsResults.map((item =>

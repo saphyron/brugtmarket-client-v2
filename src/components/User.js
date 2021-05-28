@@ -18,6 +18,10 @@ class User extends React.Component {
         return result;
     }
 
+    changedCategory = (category) => {
+        this.setState({selectedCategory: category})
+    }
+
     render() {
         const { isLoaded, error } = this.state;
 
@@ -30,7 +34,7 @@ class User extends React.Component {
         } else {
             return (
                 <article id="page">
-                        <Header />
+                        <Header onChange = {this.changedCategory} />
                     <div id="user-logo">
                         <img src="/userlogo.jpg" alt="logo" id="user-logo"></img>
                     </div>

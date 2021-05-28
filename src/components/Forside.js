@@ -38,6 +38,10 @@ class Forside extends React.Component {
         });
     }
 
+    changedCategory = (category) => {
+        this.setState({selectedCategory: category})
+    }
+
     render() {
         const { isLoaded, error, categories, selectedCategory } = this.state;
 
@@ -50,7 +54,7 @@ class Forside extends React.Component {
         } else {
             return (
                 <article id="page">
-                    <Header />
+                    <Header onChange = {this.changedCategory}/>
                     {categories.map((item =>
                         <div className="Categories">
                             <div className="forside-row" data-id={item.category}>

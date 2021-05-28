@@ -59,6 +59,11 @@ class SpecificAdvertisement extends React.Component {
             }))
     }
 
+    changedCategory = (category) => {
+        this.setState({selectedCategory: category})
+    }
+
+    //todo fix advertisement så den kun viser en i stedet for alle
     render() {
         const { isLoaded, error, advertisementResult, selectedUser, userResultSet } = this.state;
 
@@ -72,7 +77,7 @@ class SpecificAdvertisement extends React.Component {
         } else {
             return (
                 <article className="page">
-                    <Header />
+                    <Header onChange = {this.changedCategory} />
                     <div className="bodypage">
                         <div className="User_Profile">
                             <div className="user-row">{userResultSet.companyName}</div>
@@ -81,6 +86,7 @@ class SpecificAdvertisement extends React.Component {
                             <div className="user-row"><p bold="true">Phone: </p><p>{userResultSet.phoneCode} {userResultSet.phoneNumber}</p></div>
                             <button className="user-row" data-id={userResultSet} onClick={this.handleClick}>View User</button>
                         </div>
+                        
                         {advertisementResult.map((item =>
                             <div className="Advertisement">
                                 <div className="logo">

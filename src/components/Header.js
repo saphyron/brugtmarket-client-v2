@@ -20,11 +20,15 @@ class Header extends React.Component {
     }
 
     selectCategory = (e) => {
-        let target = e.target;
+        console.log("test")
+        this.props.onChange(e.target.value);
+
+
+        /*let target = e.target;
         let selectedCategoryIndex = target.value;
         this.setState({
             selectedCategory: selectedCategoryIndex
-        });
+        });*/
     }
 
 
