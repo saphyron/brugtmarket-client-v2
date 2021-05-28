@@ -34,14 +34,18 @@
     position: absolute;
     display: inline-block;
     left: 5px;
+    max-width: 200px;
+    max-height: fit-content;
   }
 
   #user-logo {
+    text-align: center;
     position: absolute;
     display: inline-block;
+    margin-top: 5px;
     left: 5px;
-    max-height: 240px;
-    min-width: 240px;
+    max-height: 100px;
+    min-width: 100px;
   }
 
   .textline {

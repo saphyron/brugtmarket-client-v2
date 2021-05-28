@@ -47,7 +47,7 @@ class Advertisements extends React.Component {
     }
 
     changedCategory = (category) => {
-        this.setState({selectedCategory: category})
+        this.setState({ selectedCategory: category })
     }
 
     render() {
@@ -62,29 +62,18 @@ class Advertisements extends React.Component {
         } else {
             return (
                 <article id="page">
-                    <Header onChange = {this.changedCategory} />
-                    <div className="advertisements">
-                        <h1>{this.props.advertisementCategory}</h1>
-                        {advertisementsResults.map((item =>
-                        
-                            <div className="advertisement-row" data-id={item.id} >
-                                    <div className="row">
-                                        <img src="/download.jpeg" alt={item.headline} id="mc"></img>
-                                    </div>
-                                    <div className="row">
-                                        <h2>{item.type}</h2>
-                                    </div>
-                                    <div className="row">
-                                        <h3 id="Headline">{item.headline}</h3>
-                                    </div>
-                                    <div className="textline">{item.text}</div>
-                                    <div className="row"><h4 bold="true">Price:</h4> {item.price} ,-</div>
-                                <button onClick={this.handleClick}>View Advertisement</button>
-                            
+                    <Header onChange={this.changedCategory} />
+                    <h1 className="title-profile">{this.props.advertisementCategory}</h1>
+                    {advertisementsResults.map((item =>
+                        <div className="advertisement-row" data-id={item.id} >
+                            <img src="/download.jpeg" alt="logo" id="mc"></img>
+                            <h2 className="adver-row">{item.type}</h2>
+                            <h4 className="adver-row"> {item.headline}</h4>
+                            <div className="adver-row">{item.text}</div>
+                            <div className="adver-row">Price: {item.price} ,-</div>
+                            <button onClick={this.handleClick}>View Advertisement</button>
                         </div>
-                        ))}
-                        </div>
-
+                    ))}
                 </article>
             );
         }

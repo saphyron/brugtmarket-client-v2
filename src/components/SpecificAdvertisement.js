@@ -10,6 +10,7 @@ class SpecificAdvertisement extends React.Component {
             isLoaded: false,
             error: null,
             advertisementResult: [],
+            specificAdvertisementRow: null,
             userResultSet: [],
             selectedUser: null
         }
@@ -54,18 +55,18 @@ class SpecificAdvertisement extends React.Component {
                 this.setState({
                     isLoaded: true,
                     advertisementResult: user.advertisements,
+                    specificAdvertisementRow: advertisement,
                     userResultSet: user,
                 });
             }))
     }
 
     changedCategory = (category) => {
-        this.setState({selectedCategory: category})
+        this.setState({ selectedCategory: category })
     }
 
-    //todo fix advertisement så den kun viser en i stedet for alle
     render() {
-        const { isLoaded, error, advertisementResult, selectedUser, userResultSet } = this.state;
+        const { isLoaded, error, advertisementResult, selectedUser, userResultSet, specificAdvertisementRow } = this.state;
 
 
         if (error) {
@@ -77,28 +78,25 @@ class SpecificAdvertisement extends React.Component {
         } else {
             return (
                 <article className="page">
-                    <Header onChange = {this.changedCategory} />
+                    <Header onChange={this.changedCategory} />
                     <div className="bodypage">
                         <div className="User_Profile">
                             <div className="user-row">{userResultSet.companyName}</div>
                             <div className="user-row">{userResultSet.firstName} {userResultSet.lastName}</div>
-                            <div className="user-row"><p bold="true">Email: </p><p>{userResultSet.email}</p></div>
-                            <div className="user-row"><p bold="true">Phone: </p><p>{userResultSet.phoneCode} {userResultSet.phoneNumber}</p></div>
+                            <div className="user-row">Email: {userResultSet.email}</div>
+                            <div className="user-row">Phone: {userResultSet.phoneCode} {userResultSet.phoneNumber}</div>
                             <button className="user-row" data-id={userResultSet} onClick={this.handleClick}>View User</button>
                         </div>
-                        
-                        {advertisementResult.map((item =>
-                            <div className="Advertisement">
-                                <div className="logo">
-                                    <img src="/download.jpeg" alt="logo" id="mc"></img>
-                                </div>
-                                <h1 className="adver-row">{item.type}</h1>
-                                <p className="adver-row">{this.dateConverter(item.creation)}</p>
-                                <h1 className="adver-row">{item.headline}</h1>
-                                <div className="text">{item.shorterText}</div>
-                                <div className="adver-row"><h4 bold="true">Price:</h4> {item.price} ,-</div>
+                        <div className="Advertisement">
+                            <div className="logo">
+                                <img src="/download.jpeg" alt="logo" id="mc"></img>
                             </div>
-                        ))}
+                            <h1 className="adver-row">{specificAdvertisementRow.type}</h1>
+                            <p className="adver-row">{this.dateConverter(specificAdvertisementRow.creation)}</p>
+                            <h1 className="adver-row">{specificAdvertisementRow.headline}</h1>
+                            <div className="adver-row">{specificAdvertisementRow.shorterText}</div>
+                            <div className="adver-row">Price: {specificAdvertisementRow.price} ,-</div>
+                        </div>
                     </div>
                 </article>
             );
