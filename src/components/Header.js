@@ -22,8 +22,6 @@ class Header extends React.Component {
     selectCategory = (e) => {
         console.log("test")
         this.props.onChange(e.target.value);
-
-
         /*let target = e.target;
         let selectedCategoryIndex = target.value;
         this.setState({
